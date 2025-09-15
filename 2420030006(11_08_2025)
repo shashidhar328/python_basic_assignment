@@ -1,0 +1,219 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VUpn2XOIKru6",
+        "outputId": "f3077831-008c-4575-f501-32322628e3ed"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Following is the BFS:\n",
+            "5 3 7 2 4 8 "
+          ]
+        }
+      ],
+      "source": [
+        "# Breadth First Search Algorithm\n",
+        "\n",
+        "graph = {\n",
+        "    '5': ['3', '7','2'],\n",
+        "    '3': ['2', '4','7'],\n",
+        "    '7': ['8'],\n",
+        "    '2': [],\n",
+        "    '4': ['8'],\n",
+        "    '8': []\n",
+        "\n",
+        "}\n",
+        "\n",
+        "visited = []\n",
+        "queue = []\n",
+        "\n",
+        "def bfs(visited, graph, node):\n",
+        "    visited.append(node)\n",
+        "    queue.append(node)\n",
+        "\n",
+        "    while queue:\n",
+        "        m = queue.pop(0)\n",
+        "        print(m, end=\" \")\n",
+        "\n",
+        "        for neighbour in graph[m]:\n",
+        "            if neighbour not in visited:\n",
+        "                visited.append(neighbour)\n",
+        "                queue.append(neighbour)\n",
+        "\n",
+        "print(\"Following is the BFS:\")\n",
+        "bfs(visited, graph, '5')\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Depth First Search\n",
+        "\n",
+        "graph = {\n",
+        "    '5': ['3', '7', '2'],\n",
+        "    '3': ['2', '4', '7'],\n",
+        "    '7': ['8'],\n",
+        "    '2': [],\n",
+        "    '4': ['8'],\n",
+        "    '8': []\n",
+        "}\n",
+        "\n",
+        "visited = set()\n",
+        "\n",
+        "def dfs(visited, graph, node):\n",
+        "    if node not in visited:\n",
+        "        print(node, end=\" \")\n",
+        "        visited.add(node)\n",
+        "        for neighbour in graph[node]:\n",
+        "            dfs(visited, graph, neighbour)\n",
+        "\n",
+        "print(\"Following is the DFS:\")\n",
+        "dfs(visited, graph, '5')\n"
+      ],
+      "metadata": {
+        "id": "6AJM9vEgZ3uA",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "68a79da7-38b3-49b9-966d-5137049fa1e5"
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Following is the DFS:\n",
+            "5 3 2 4 8 7 "
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#idfs\n",
+        "graph = {\n",
+        "    '5': ['3', '7', '2'],\n",
+        "    '3': ['2', '4', '7'],\n",
+        "    '7': ['8'],\n",
+        "    '2': [],\n",
+        "    '4': ['8'],\n",
+        "    '8': []\n",
+        "}\n",
+        "\n",
+        "def dls(node, depth, visited):\n",
+        "\n",
+        "    if depth >= 0:\n",
+        "        print(node, end=\" \")\n",
+        "        visited.add(node)\n",
+        "        if depth > 0:\n",
+        "            for neighbour in graph[node]:\n",
+        "                if neighbour not in visited:\n",
+        "                    dls(neighbour, depth - 1, visited)\n",
+        "\n",
+        "def iddfs(start, max_depth):\n",
+        "    for depth in range(max_depth + 1):\n",
+        "        print(f\"\\nDepth limit: {depth}\")\n",
+        "        visited = set()\n",
+        "        dls(start, depth, visited)\n",
+        "\n",
+        "print(\"The below IDFS:\")\n",
+        "iddfs('5', 3)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SpC1-y9hwshU",
+        "outputId": "b3ae9b70-6f8c-4862-f79f-35db0b438ce1"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Following is the IDFS:\n",
+            "\n",
+            "Depth limit: 0\n",
+            "5 \n",
+            "Depth limit: 1\n",
+            "5 3 7 2 \n",
+            "Depth limit: 2\n",
+            "5 3 2 4 7 \n",
+            "Depth limit: 3\n",
+            "5 3 2 4 8 7 "
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "graph = {\n",
+        "    '5': ['3', '7', '2'],\n",
+        "    '3': ['2', '4', '7'],\n",
+        "    '7': ['8'],\n",
+        "    '2': [],\n",
+        "    '4': ['8'],\n",
+        "    '8': []\n",
+        "}\n",
+        "\n",
+        "visited = set()\n",
+        "\n",
+        "def gdfs(visited, graph, node):\n",
+        "    if node not in visited:\n",
+        "        print(node, end=\" \")\n",
+        "        visited.add(node)\n",
+        "        for neighbour in graph[node]:\n",
+        "            gdfs(visited, graph, neighbour)\n",
+        "\n",
+        "print(\"Following is the GDFS:\")\n",
+        "gdfs(visited, graph, '5')\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "WVirBb0zw8CY",
+        "outputId": "d92a101d-392c-4d88-d7b4-be826e306734"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Following is the GDFS:\n",
+            "5 3 2 4 8 7 "
+          ]
+        }
+      ]
+    }
+  ]
+}
